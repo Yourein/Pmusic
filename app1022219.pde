@@ -8,10 +8,6 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.*;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.nio.ByteBuffer;
-
 Minim minim = new Minim(this);             
 AudioPlayer player;              
 FFT fft;
