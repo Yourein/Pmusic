@@ -76,9 +76,9 @@ void loadMusic(Song selection) {
     barWidth = frameWidth/MAXBAND;
 
     //Setup infoPanels;
-    infoPanels.get(0).changeMessage(selection.getTrackTitle());
-    infoPanels.get(1).changeMessage(selection.getTrackArtist());
-    infoPanels.get(2).changeMessage(selection.getAlbumTitle());
+    infoPanels.get(0).changeMessage((selection.getTrackTitle()==""?"Unknown Title":selection.getTrackTitle()));
+    infoPanels.get(1).changeMessage((selection.getTrackArtist()==""?"Unknown Artist":selection.getTrackArtist()));
+    infoPanels.get(2).changeMessage((selection.getAlbumTitle()==""?"Unknown Album":selection.getAlbumTitle()));
 
     //Start playing
     player.play();
