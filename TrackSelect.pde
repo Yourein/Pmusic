@@ -15,9 +15,12 @@ ArrayList<Song> selectMusic() {
   ArrayList<Song> res = new ArrayList<Song>();
   if (selected == JFileChooser.APPROVE_OPTION) {
     File[] files = filechooser.getSelectedFiles();
+
+    //Check every single files
     for (int i = 0; i < files.length; i++) {
       String fExt = files[i].getAbsolutePath().substring(files[i].getAbsolutePath().length()-3);
 
+      //If txt file was loaded, look filepath written in txt
       if (fExt.equals("txt")){
         String[] temp = loadStrings(files[i].getAbsolutePath());
 
