@@ -103,14 +103,14 @@ void draw() {
       drawTrackInfo();
       createMargin();
 
-      //Do everytime BEGIN
+      //Do every in DIV [frameCount]
       if (frameCount%DIV == 0){
         fft.forward(player.mix);
         fLeft.forward(player.left);
         fRight.forward(player.right);
       }
-      //Do everytime END
 
+      //Draw main panel
       switch (panelStatus){
         case 0:
           draw_histogram();
@@ -121,6 +121,7 @@ void draw() {
           break;
       };
 
+      //Draw some player status
       drawGain();
       drawStatus();
       drawTimeElapsed();

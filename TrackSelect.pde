@@ -44,8 +44,8 @@ ArrayList<Song> selectMusic() {
 
 void loadMusic(Song selection) {
   try {
-    //int aResult = createAlbumArt(selection.getFile().getAbsolutePath());
-    int aResult = 1;
+    int aResult = createAlbumArt(selection.getFile().getAbsolutePath());
+    //int aResult = 1;
     //Wait file-update
     delay(300);
 
