@@ -16,7 +16,7 @@ class Song {
 
   private boolean pause = false;
 
-  Song(File _track){
+  Song(File _track) {
     track = _track.getAbsolutePath();
     println(track);
     mInspector.debugOff();
@@ -26,47 +26,47 @@ class Song {
     mTitle = meta.title();
     aTitle = meta.album();
     tArtist = meta.author();
-    
+
     //Release memories
     meta = null;
     aInspector = null;
     mInspector.stop();
   }
 
-  public File getFile(){
+  public File getFile() {
     return new File(track);
   }
-  
-  public String getAbsolutePath(){
+
+  public String getAbsolutePath() {
     return track;
   }
 
-  public boolean pauseState(){
+  public boolean pauseState() {
     return this.pause;
   }
 
-  public void PlayPause(){
+  public void PlayPause() {
     this.pause = !this.pause;
   }
 
-  public String getTrackArtist(){
+  public String getTrackArtist() {
     return this.tArtist;
   }
 
-  public String getTrackTitle(){
+  public String getTrackTitle() {
     return this.mTitle;
   }
 
-  public String getAlbumTitle(){
+  public String getAlbumTitle() {
     return this.aTitle;
   }
 };
 
-int createAlbumArt(String filepath){
+int createAlbumArt(String filepath) {
   launch(winArg1);
   launch(winArg2);
-  
+
   //Wait CMD
   delay(300);
-  return ext.generateAlbumArt(filepath);  
+  return ext.generateAlbumArt(filepath);
 }

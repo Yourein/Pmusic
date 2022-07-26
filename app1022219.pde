@@ -63,18 +63,73 @@ void setup() {
   for (int i = 0; i < 10; i++) queuePanels.add(new SlidePanel("", frameXBegin+100, 100+(40*i), 16));
 
   //Buttons
-  buttons.add(new Button(1075, 20, 80, 80, loadImage("./data/playpause.png"), new fn(){public void func(){PlayPause();}}));
-  buttons.add(new Button(975, 20, 80, 80, loadImage("./data/rewind.png"), new fn(){public void func(){rewindTrack();}}));
-  buttons.add(new Button(1175, 20, 80, 80, loadImage("./data/forward.png"), new fn(){public void func(){nextTrack();}}));
-  buttons.add(new Button(975, 249, 80, 80, loadImage("./data/mute.png"), new fn(){public void func(){toggleMute();}}));
-  buttons.add(new Button(1075, 249, 80, 80, loadImage("./data/volumedown.png"), new fn(){public void func(){volumeDown();}}));
-  buttons.add(new Button(1175, 249, 80, 80, loadImage("./data/volumeup.png"), new fn(){public void func(){volumeUp();}}));
-  buttons.add(new Button(975, 133, 80, 80, loadImage("./data/noroop.png"), new fn(){public void func(){toggleLoop();}}));
-  buttons.add(new Button(1075, 365, 180, 80, loadImage("./data/toggleinfo.png"), new fn(){public void func(){toggleInfo();}}));
-  buttons.add(new Button(1175, 133, 80, 80, loadImage("./data/gop10.png"), new fn(){public void func(){skipTenSec();}}));
-  buttons.add(new Button(1075, 133, 80, 80, loadImage("./data/gom10.png"), new fn(){public void func(){backTenSec();}}));
-  buttons.add(new Button(975, 365, 80, 80, loadImage("./data/eject.png"), new fn(){public void func(){Eject();}}));
-  
+  buttons.add(new Button(1075, 20, 80, 80, loadImage("./data/playpause.png"), new fn() {
+    public void func() {
+      PlayPause();
+    }
+  }
+  ));
+  buttons.add(new Button(975, 20, 80, 80, loadImage("./data/rewind.png"), new fn() {
+    public void func() {
+      rewindTrack();
+    }
+  }
+  ));
+  buttons.add(new Button(1175, 20, 80, 80, loadImage("./data/forward.png"), new fn() {
+    public void func() {
+      nextTrack();
+    }
+  }
+  ));
+  buttons.add(new Button(975, 249, 80, 80, loadImage("./data/mute.png"), new fn() {
+    public void func() {
+      toggleMute();
+    }
+  }
+  ));
+  buttons.add(new Button(1075, 249, 80, 80, loadImage("./data/volumedown.png"), new fn() {
+    public void func() {
+      volumeDown();
+    }
+  }
+  ));
+  buttons.add(new Button(1175, 249, 80, 80, loadImage("./data/volumeup.png"), new fn() {
+    public void func() {
+      volumeUp();
+    }
+  }
+  ));
+  buttons.add(new Button(975, 133, 80, 80, loadImage("./data/noroop.png"), new fn() {
+    public void func() {
+      toggleLoop();
+    }
+  }
+  ));
+  buttons.add(new Button(1075, 365, 180, 80, loadImage("./data/toggleinfo.png"), new fn() {
+    public void func() {
+      toggleInfo();
+    }
+  }
+  ));
+  buttons.add(new Button(1175, 133, 80, 80, loadImage("./data/gop10.png"), new fn() {
+    public void func() {
+      skipTenSec();
+    }
+  }
+  ));
+  buttons.add(new Button(1075, 133, 80, 80, loadImage("./data/gom10.png"), new fn() {
+    public void func() {
+      backTenSec();
+    }
+  }
+  ));
+  buttons.add(new Button(975, 365, 80, 80, loadImage("./data/eject.png"), new fn() {
+    public void func() {
+      Eject();
+    }
+  }
+  ));
+
   textFont(tFont);
   frameRate(FPS);
 }
@@ -91,7 +146,7 @@ void draw() {
       textAlign(CENTER, CENTER);
       text("No Music Loaded! Press L to Choose File(s).", width/2, height/2);
       textAlign(LEFT, LEFT);
-    } else if (isSelected == true && selectRequest == false){
+    } else if (isSelected == true && selectRequest == false) {
       resetPlayer(0);
     }
   } else {
@@ -100,21 +155,21 @@ void draw() {
       createMargin();
 
       //Do every in DIV [frameCount]
-      if (frameCount%DIV == 0){
+      if (frameCount%DIV == 0) {
         fft.forward(player.mix);
         fLeft.forward(player.left);
         fRight.forward(player.right);
       }
 
       //Draw main panel
-      switch (panelStatus){
-        case 0:
-          draw_histogram();
-          drawRMS();
-          break;
-        case 1:
-          drawQueue();
-          break;
+      switch (panelStatus) {
+      case 0:
+        drawHistogram();
+        drawRMS();
+        break;
+      case 1:
+        drawQueue();
+        break;
       };
 
       //Draw some player status
@@ -142,42 +197,42 @@ void keyPressed() {
     PlayPause();
   }
 
-  if (key == 'E' || key == 'e' && begin == true){
+  if (key == 'E' || key == 'e' && begin == true) {
     Eject();
   }
 
-  if (key == 'L' || key == 'l' && begin == true){
+  if (key == 'L' || key == 'l' && begin == true) {
     skipTenSec();
   }
 
-  if (key == 'H' || key == 'H' && begin == true){
+  if (key == 'H' || key == 'H' && begin == true) {
     backTenSec();
   }
 
-  if (key == CODED && keyCode == UP && begin == true){
+  if (key == CODED && keyCode == UP && begin == true) {
     volumeUp();
   }
-  if (key == CODED && keyCode == DOWN && begin == true){
+  if (key == CODED && keyCode == DOWN && begin == true) {
     volumeDown();
   }
 
-  if (key == 'M' || key == 'm' && begin == true){
+  if (key == 'M' || key == 'm' && begin == true) {
     toggleMute();
   }
 
-  if (key == CODED && keyCode == RIGHT && begin == true){
+  if (key == CODED && keyCode == RIGHT && begin == true) {
     nextTrack();
   }
 
-  if (key == CODED && keyCode == LEFT && begin == true){
+  if (key == CODED && keyCode == LEFT && begin == true) {
     rewindTrack();
   }
 
-  if (key == 'R' || key == 'r' && begin == true){
+  if (key == 'R' || key == 'r' && begin == true) {
     toggleLoop();
   }
 }
 
-void mouseClicked(){
+void mouseClicked() {
   if (begin == true) for (Button btn : buttons) btn.mouseClicked();
 }

@@ -21,17 +21,16 @@ ArrayList<Song> selectMusic() {
       String fExt = files[i].getAbsolutePath().substring(files[i].getAbsolutePath().length()-3);
 
       //If txt file was loaded, look filepath written in txt
-      if (fExt.equals("txt")){
+      if (fExt.equals("txt")) {
         String[] temp = loadStrings(files[i].getAbsolutePath());
 
-        for (String x : temp){
+        for (String x : temp) {
           File tempFile = new File(x);
           if (tempFile.exists() == false) continue;
           Song tempSong = new Song(tempFile);
           res.add(tempSong);
         }
-      }
-      else {
+      } else {
         Song temp = new Song(files[i]);
         res.add(temp);
       }
@@ -58,11 +57,11 @@ void loadMusic(Song selection) {
 
     //Loading AlbumArt
     AlbumArt = emptyAlbumArt;
-    try{
+    try {
       if (aResult == 1) AlbumArt = loadImage("out.jpeg");
       else if (aResult == 2) AlbumArt = loadImage("out.png");
     }
-    catch (Exception e){
+    catch (Exception e) {
       AlbumArt = emptyAlbumArt;
     }
 
@@ -110,7 +109,7 @@ void resetPlayer(int nextInd) {
 
   //Go to next song
   playInd = nextInd;
-  for (int i = playInd; i < playInd+10; i++){
+  for (int i = playInd; i < playInd+10; i++) {
     if (i < playListBuf.size()) queuePanels.get(i-playInd).changeMessage(playListBuf.get(i).getTrackTitle()+" / "+playListBuf.get(i).getAlbumTitle());
     else queuePanels.get(i-playInd).changeMessage("");
   }
@@ -119,13 +118,12 @@ void resetPlayer(int nextInd) {
     loadMusic(playListBuf.get(playInd));
   } else {
     playInd = 0;
-    if (loopStatus == 1){
+    if (loopStatus == 1) {
       loadMusic(playListBuf.get(playInd));
-    }
-    else {
+    } else {
       isSelected = false;
       selectRequest = true;
-      
+
       playListBuf.clear();
       playListBuf = null;
       System.gc();
